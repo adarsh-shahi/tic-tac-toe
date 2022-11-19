@@ -13,17 +13,49 @@ html {
 }
 
 .game-layout {
-	display: grid;
-   max-width: 65rem; 
+
+  max-width: 64rem; 
 	margin: 15rem auto;
-	background-color: #777;
-	grid-template-columns: 1fr 1fr 1fr;
-	gap: 3.4rem;
-  align-items: stretch;
+	background-color: #fff;
+  height: 64rem;
+  position: relative;
+
 }
 
-.items {
-	background-color: red;
-	height: 20rem;
+.vertical-1, .vertical-2{
+  display: inline-block;
+  height: inherit;
+  width: 2rem;
+  background-color: #777;
+  position: absolute;
+}
 
+
+
+.horizontal-1, .horizontal-2{
+  display: inline-block;
+  width: 64rem;
+  height: 2rem;
+  background-color: #777;
+  position: absolute;
+}
+
+.vertical-1{
+  top: 0rem;
+  left: 20rem;
+}
+
+
+.vertical-2{
+  top: 0rem;
+  right: 20rem;
+}
+
+
+.horizontal-1{
+  top: 20rem;
+}
+
+.horizontal-2{
+  bottom: 20rem;
 }
