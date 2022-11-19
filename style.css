@@ -1,0 +1,29 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	font-size: 62.4%;
+}
+
+.main-game {
+
+}
+
+.game-layout {
+	display: grid;
+   max-width: 65rem; 
+	margin: 15rem auto;
+	background-color: #777;
+	grid-template-columns: 1fr 1fr 1fr;
+	gap: 3.4rem;
+  align-items: stretch;
+}
+
+.items {
+	background-color: red;
+	height: 20rem;
+
+}
