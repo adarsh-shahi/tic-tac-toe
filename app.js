@@ -13,19 +13,17 @@ const box8 = document.querySelector(".item-8");
 const box9 = document.querySelector(".item-9");
 
 let boxes = [box1, box2, box3, box4, box5, box6, box7, box8, box9];
+
+// 0 - not filled
+// 1 - filled by O
+// 2 -filled by X
 let filled = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 let isLeft = 9;
 let isZero = false;
+let winner = 0;
 
-boxes.forEach((box, i) => {
-	box.addEventListener("click", () => {
-		if (!filled.includes(0)) return;
-		filled[i] = 1;
-		isLeft--;
-		const pointerClass = document.querySelector(`.zero-${i + 1}`);
-		pointerClass.style.display = "block";
-		console.log(filled);
-		console.log(isLeft);
+const playComputer = function () {
+	setTimeout(() => {
 		for (let i = 0; i < filled.length && isLeft > 0; i++) {
 			if (filled[i] === 0) {
 				filled[i] = 2;
@@ -36,5 +34,51 @@ boxes.forEach((box, i) => {
 				return;
 			}
 		}
+	}, 400);
+};
+
+const printWinner = function (val) {
+	if (val === 1) {
+		console.log("O won");
+		isLeft = 0;
+	} else if (val === 2) {
+		console.log("X won");
+		isLeft = 0;
+	}
+};
+
+const checkWin = function () {
+	if (filled[0] === filled[1] && filled[1] === filled[2])
+		printWinner(filled[0]);
+	else if (filled[3] === filled[4] && filled[4] === filled[5])
+		printWinner(filled[3]);
+	else if (filled[6] === filled[7] && filled[7] === filled[8])
+		printWinner(filled[6]);
+	else if (filled[0] === filled[3] && filled[3] === filled[6])
+		printWinner(filled[0]);
+	else if (filled[2] === filled[5] && filled[5] === filled[8])
+		printWinner(filled[2]);
+	else if (filled[1] === filled[4] && filled[4] === filled[7])
+		printWinner(filled[1]);
+	else if (filled[0] === filled[4] && filled[4] === filled[8])
+		printWinner(filled[0]);
+	else if (filled[2] === filled[4] && filled[4] === filled[6])
+		printWinner(filled[2]);
+};
+
+boxes.forEach((box, i) => {
+	box.addEventListener("click", () => {
+		if (isLeft === 0) return;
+		filled[i] = 1;
+		isLeft--;
+		const pointerClass = document.querySelector(`.zero-${i + 1}`);
+		pointerClass.style.display = "block";
+		console.log(filled);
+		console.log(isLeft);
+		checkWin();
+		if (isLeft === 0) return;
+		playComputer();
+		checkWin();
+		if (isLeft === 0) return;
 	});
 });
