@@ -22,10 +22,15 @@ html {
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 20rem);
 
 }
 .items{
   background-color: #999;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .vertical-1, .vertical-2, .horizontal-1, .horizontal-2{
   display: inline-block;
@@ -69,4 +74,15 @@ html {
 
 .horizontal-2{
   bottom: 20rem;
+}
+
+.mul, .zero{
+  width: 15rem;
+  height: 15rem;
+  padding: 1rem;
+  color: orange;
+}
+
+.mul, .zero{
+  display: none;
 }
