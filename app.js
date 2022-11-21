@@ -130,15 +130,16 @@ const findTwoInWinPosition = function (val) {
 };
 
 const playComputerImpossible = function () {
-	if (findTwoInWinPosition(2)){
+	if (findTwoInWinPosition(2)) {
+		// find 2 in continue and win - computer
 		isLeft--;
-		return; // find 2 in continue and win - computer
-	} 
-	if (findTwoInWinPosition(1)){
+		return;
+	}
+	if (findTwoInWinPosition(1)) {
 		isLeft--;
 		return; // find 2 of opponent in continue and block - computer
-	} 
-		
+	}
+
 	if (filled[4] !== 1 && filled[4] === 0) {
 		filled[4] = 2;
 		document.querySelector(`.mul-${5}`).style.display = "block";
@@ -156,6 +157,48 @@ const playComputerImpossible = function () {
 	} else if (filled[8] !== 1 && filled[8] === 0) {
 		filled[8] = 2;
 		document.querySelector(`.mul-${9}`).style.display = "block";
+	} else {
+		for (let i = 0; i < filled.length && isLeft > 0; i++) {
+			if (filled[i] === 0) {
+				filled[i] = 2;
+				isLeft--;
+				document.querySelector(`.mul-${i + 1}`).style.display = "block";
+				return;
+			}
+		}
+	}
+
+	isLeft--;
+};
+
+const playComputerMedium = function () {
+	if (findTwoInWinPosition(2)) {
+		// find 2 in continue and win - computer
+		isLeft--;
+		return;
+	}
+	if (findTwoInWinPosition(1)) {
+		isLeft--;
+		return; // find 2 of opponent in continue and block - computer
+	}
+
+	if (filled[0] !== 1 && filled[0] === 0) {
+		console.log("came here");
+		filled[0] = 2;
+		console.log(filled);
+		document.querySelector(`.mul-${1}`).style.display = "block";
+	} else if (filled[2] !== 1 && filled[2] === 0) {
+		filled[2] = 2;
+		document.querySelector(`.mul-${3}`).style.display = "block";
+	} else if (filled[6] !== 1 && filled[6] === 0) {
+		filled[6] = 2;
+		document.querySelector(`.mul-${7}`).style.display = "block";
+	} else if (filled[8] !== 1 && filled[8] === 0) {
+		filled[8] = 2;
+		document.querySelector(`.mul-${9}`).style.display = "block";
+	} else if (filled[4] !== 1 && filled[4] === 0) {
+		filled[4] = 2;
+		document.querySelector(`.mul-${5}`).style.display = "block";
 	} else {
 		for (let i = 0; i < filled.length && isLeft > 0; i++) {
 			if (filled[i] === 0) {
@@ -213,7 +256,7 @@ boxes.forEach((box, i) => {
 		console.log(isLeft);
 		checkWin();
 		if (isLeft === 0) return;
-		playComputerImpossible();
+		playComputerEasy()
 		console.log(filled);
 		checkWin();
 		if (isLeft === 0) return;
