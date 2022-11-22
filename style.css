@@ -134,8 +134,9 @@ aside{
 }
 
 .result-display{
-  background-color: orange;
-  padding: 1.4rem 2.8rem;
+  background-color: #fdf2e9;
+  padding: 1.8rem 3.4rem;
+  color: #e67e22;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -143,10 +144,8 @@ aside{
 }
 
 .result-display h2{
-  font-size: 3.4rem;
-}
-
-.result-display p {
-  font-size: 2rem;
+  font-size: 7.6rem;
+  text-transform: uppercase;
+  font-weight: bolder;
 }
 

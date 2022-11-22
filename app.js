@@ -3,6 +3,7 @@ const zero = document.querySelectorAll(".zero");
 const mul = document.querySelectorAll(".mul");
 
 const winLine = document.querySelector(".win-line");
+const winnerName = document.querySelector('.winner-name')
 
 const levelSelected = document.querySelector("#select-levels");
 
@@ -32,6 +33,7 @@ let isZero = false;
 let winner = 0;
 
 const reset = function () {
+	winnerName.textContent = "..."
 	winLine.style.opacity = "0";
 	winLine.style.visibility = "hidden";
 	zero.forEach((element) => {
@@ -251,11 +253,13 @@ const printWinner = function (val) {
 		winner = 1;
 		console.log("O won");
 		isLeft = 0;
+		winnerName.textContent = "O"
 	} else if (val === 2) {
 		winner = 2;
 		console.log(`came here win`);
 		console.log("X won");
 		isLeft = 0;
+		winnerName.textContent = "X"
 	}
 };
 
