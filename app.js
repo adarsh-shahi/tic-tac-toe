@@ -163,6 +163,23 @@ const playComputerImpossible = function () {
 	if (filled[4] !== 1 && filled[4] === 0) {
 		filled[4] = 2;
 		document.querySelector(`.mul-${5}`).style.display = "block";
+	} else if (
+		(filled[0] === 1 && filled[8] === 1) ||
+		(filled[2] === 1 && filled[6] === 1)
+	) {
+		if (filled[1] === 0) {
+			filled[1] = 2;
+			document.querySelector(`.mul-${2}`).style.display = "block";
+		} else if (filled[3] === 0) {
+			filled[3] = 2;
+			document.querySelector(`.mul-${4}`).style.display = "block";
+		} else if (filled[5] === 0) {
+			filled[5] = 2;
+			document.querySelector(`.mul-${6}`).style.display = "block";
+		} else if (filled[7] === 0) {
+			filled[7] = 2;
+			document.querySelector(`.mul-${8}`).style.display = "block";
+		}
 	} else if (filled[0] !== 1 && filled[0] === 0) {
 		filled[0] = 2;
 		document.querySelector(`.mul-${1}`).style.display = "block";
@@ -280,7 +297,7 @@ const checkWin = function () {
 		winLine.style.visibility = "visible";
 		winLine.style.left = "11rem";
 		winLine.style.top = "7rem";
-		winLine.style.width = "50rem"
+		winLine.style.width = "50rem";
 
 		printWinner(filled[0]);
 	} else if (
@@ -294,7 +311,7 @@ const checkWin = function () {
 		winLine.style.visibility = "visible";
 		winLine.style.right = "11rem";
 		winLine.style.top = "7rem";
-		winLine.style.width = "50rem"
+		winLine.style.width = "50rem";
 		printWinner(filled[2]);
 	} else if (
 		filled[1] === filled[4] &&
@@ -353,7 +370,7 @@ impossibleLevel.addEventListener("click", function () {
 const changingLevels = function (level) {
 	reset();
 	selectLevel = level;
-	console.log('hehe '+selectLevel);
+	console.log("hehe " + selectLevel);
 	easyColor = "#f5cba7";
 	mediumColor = "#f5cba7";
 	impossibleColor = "#f5cba7";
