@@ -9,24 +9,25 @@ html {
 }
 
 .main-game {
-
+  display: flex;
+  margin: 15rem 20rem;
+  gap: 20rem;
+  justify-content: space-between;
 }
 
 .game-layout {
 
-  max-width: 64rem; 
-	margin: 15rem auto;
-	background-color: orangered;
+  min-width: 64rem;
   height: 64rem;
   position: relative;
   display: grid;
   gap: 2rem;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 20rem);
+ 
 
 }
 .items{
-  background-color: #999;
   text-align: center;
   display: flex;
   align-items: center;
@@ -34,28 +35,23 @@ html {
 }
 .vertical-1, .vertical-2, .horizontal-1, .horizontal-2{
   display: inline-block;
-  background-color: #777;
+  background-color: orangered;
   position: absolute;
   border-radius: 100rem;
+  box-shadow: 2.4rem 2.4rem 4.8rem rgba(0, 0, 0, 0.3);
 }
 
 .vertical-1, .vertical-2{
   display: inline-block;
   height: 66rem;
   width: 2rem;
-  background-color: #777;
-  position: absolute;
   top: -1rem;
 }
-
-
 
 .horizontal-1, .horizontal-2{
   display: inline-block;
   width: 66rem;
   height: 2rem;
-  background-color: #777;
-  position: absolute;
   left: -1rem;
 }
 
@@ -86,3 +82,55 @@ html {
 .mul, .zero{
   display: none;
 }
+
+.select-levels{
+  padding: 1.4rem 2.8rem;
+  font-size: 2rem;
+  display: inline-block;
+  align-self: flex-start;
+  justify-self: center;
+  border: 2px solid orangered;
+  border-radius: 3rem;
+  background-color: #fff;
+  box-shadow: 2.4rem 2.4rem 4.8rem rgba(0, 0, 0, 0.3);
+  transition: transform .3s;
+}
+
+.select-levels:hover{
+  transform: translateY(-.4rem);
+}
+
+.win-line{
+  position: absolute;
+  width: 50rem;
+  height: 2rem;
+  background-color: yellowgreen;
+  border-radius: 3rem;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.7s ease-out;
+}
+
+aside{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.result-display{
+  background-color: orange;
+  padding: 1.4rem 2.8rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.result-display h2{
+  font-size: 3.4rem;
+}
+
+.result-display p {
+  font-size: 2rem;
+}
+

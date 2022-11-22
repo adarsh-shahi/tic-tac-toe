@@ -2,6 +2,10 @@
 const zero = document.querySelectorAll(".zero");
 const mul = document.querySelectorAll(".mul");
 
+const winLine = document.querySelector(".win-line");
+
+const levelSelected = document.querySelector("#select-levels");
+
 const box1 = document.querySelector(".item-1");
 const box2 = document.querySelector(".item-2");
 const box3 = document.querySelector(".item-3");
@@ -23,6 +27,8 @@ let isZero = false;
 let winner = 0;
 
 const reset = function () {
+	winLine.style.opacity = "0";
+	winLine.style.visibility = "hidden";
 	zero.forEach((element) => {
 		element.style.display = "none";
 	});
@@ -34,18 +40,15 @@ const reset = function () {
 };
 
 const playComputerEasy = function () {
-	setTimeout(() => {
-		for (let i = 0; i < filled.length && isLeft > 0; i++) {
-			if (filled[i] === 0) {
-				filled[i] = 2;
-				isLeft--;
-				console.log(filled);
-				console.log(isLeft);
-				document.querySelector(`.mul-${i + 1}`).style.display = "block";
-				return;
-			}
+	for (let i = 0; i < filled.length && isLeft > 0; i++) {
+		if (filled[i] === 0) {
+			filled[i] = 2;
+			isLeft--;
+			console.log(`easy: ${filled}`);
+			document.querySelector(`.mul-${i + 1}`).style.display = "block";
+			return;
 		}
-	}, 400);
+	}
 };
 
 const playComputerImpossiblePlace = function (a, b, c) {
@@ -132,7 +135,7 @@ const findTwoInWinPosition = function (val) {
 			: filled[2] !== 1 && filled[4] !== 1 && filled[6] !== 1)
 	) {
 		const placeIndex = playComputerImpossiblePlace(2, 4, 6);
-		console.log("ok " + placeIndex);
+
 		filled[placeIndex] = 2;
 		document.querySelector(`.mul-${placeIndex + 1}`).style.display = "block";
 		return true;
@@ -155,9 +158,7 @@ const playComputerImpossible = function () {
 		filled[4] = 2;
 		document.querySelector(`.mul-${5}`).style.display = "block";
 	} else if (filled[0] !== 1 && filled[0] === 0) {
-		console.log("came here");
 		filled[0] = 2;
-		console.log(filled);
 		document.querySelector(`.mul-${1}`).style.display = "block";
 	} else if (filled[2] !== 1 && filled[2] === 0) {
 		filled[2] = 2;
@@ -194,9 +195,7 @@ const playComputerMedium = function () {
 	}
 
 	if (filled[0] !== 1 && filled[0] === 0) {
-		console.log("came here");
 		filled[0] = 2;
-		console.log(filled);
 		document.querySelector(`.mul-${1}`).style.display = "block";
 	} else if (filled[2] !== 1 && filled[2] === 0) {
 		filled[2] = 2;
@@ -238,34 +237,101 @@ const printWinner = function (val) {
 };
 
 const checkWin = function () {
-	if (filled[0] === filled[1] && filled[1] === filled[2])
+	if (filled[0] === filled[1] && filled[1] === filled[2] && filled[0] !== 0) {
+		winLine.style.opacity = "1";
+		winLine.style.visibility = "visible";
+		winLine.style.left = "7rem";
+		winLine.style.top = "9rem";
 		printWinner(filled[0]);
-	else if (filled[3] === filled[4] && filled[4] === filled[5])
+	} else if (
+		filled[3] === filled[4] &&
+		filled[4] === filled[5] &&
+		filled[5] !== 0
+	) {
+		winLine.style.opacity = "1";
+		winLine.style.visibility = "visible";
+		winLine.style.top = "49%";
+		winLine.style.left = "7rem";
 		printWinner(filled[3]);
-	else if (filled[6] === filled[7] && filled[7] === filled[8])
+	} else if (
+		filled[6] === filled[7] &&
+		filled[7] === filled[8] &&
+		filled[8] !== 0
+	) {
+		winLine.style.opacity = "1";
+		winLine.style.visibility = "visible";
+		winLine.style.bottom = "9rem";
+		winLine.style.left = "7rem";
 		printWinner(filled[6]);
-	else if (filled[0] === filled[3] && filled[3] === filled[6])
+	} else if (
+		filled[0] === filled[3] &&
+		filled[3] === filled[6] &&
+		filled[6] !== 0
+	) {
+		winLine.style.transform = `rotate(90deg)`;
+		winLine.style.transformOrigin = `top left`;
+		winLine.style.opacity = "1";
+		winLine.style.visibility = "visible";
+		winLine.style.left = "11rem";
+		winLine.style.top = "7rem";
+
 		printWinner(filled[0]);
-	else if (filled[2] === filled[5] && filled[5] === filled[8])
+	} else if (
+		filled[2] === filled[5] &&
+		filled[5] === filled[8] &&
+		filled[8] !== 0
+	) {
+		winLine.style.transform = `rotate(-90deg)`;
+		winLine.style.transformOrigin = `top right`;
+		winLine.style.opacity = "1";
+		winLine.style.visibility = "visible";
+		winLine.style.right = "11rem";
+		winLine.style.top = "7rem";
 		printWinner(filled[2]);
-	else if (filled[1] === filled[4] && filled[4] === filled[7])
+	} else if (
+		filled[1] === filled[4] &&
+		filled[4] === filled[7] &&
+		filled[7] !== 0
+	) {
+		winLine.style.opacity = "1";
+		winLine.style.visibility = "visible";
+		winLine.style.transformOrigin = `top left`;
+		winLine.style.transform = `rotate(90deg)`;
+		winLine.style.left = "52%";
+		winLine.style.top = "7rem";
 		printWinner(filled[1]);
-	else if (filled[0] === filled[4] && filled[4] === filled[8])
+	} else if (
+		filled[0] === filled[4] &&
+		filled[4] === filled[8] &&
+		filled[8] !== 0
+	) {
+		winLine.style.opacity = "1";
+		winLine.style.visibility = "visible";
+		winLine.style.transformOrigin = `top left`;
+		winLine.style.transform = `rotate(45deg)`;
+		winLine.style.left = "10rem";
+		winLine.style.top = "8rem";
+		winLine.style.width = "65rem";
 		printWinner(filled[0]);
-	else if (filled[2] === filled[4] && filled[4] === filled[6]) {
-		console.log("came here checkwin");
+	} else if (
+		filled[2] === filled[4] &&
+		filled[4] === filled[6] &&
+		filled[6] !== 0
+	) {
+		winLine.style.opacity = "1";
+		winLine.style.visibility = "visible";
+		winLine.style.transformOrigin = `top right`;
+		winLine.style.transform = `rotate(-45deg)`;
+		winLine.style.right = "10rem";
+		winLine.style.top = "8rem";
+		winLine.style.width = "65rem";
 		printWinner(filled[2]);
 	}
 };
 
 let selectLevel = playComputerMedium;
 
-const levelSelected = document.querySelector("#select-levels");
-console.log(levelSelected.value);
-
-levelSelected.addEventListener("change", function () {
-	console.log(levelSelected.value);
-	reset();
+const changingLevels = function () {
 	if (levelSelected.value === "easy") {
 		selectLevel = playComputerEasy;
 	} else if (levelSelected.value === "medium") {
@@ -273,19 +339,29 @@ levelSelected.addEventListener("change", function () {
 	} else if (levelSelected.value === "impossible") {
 		selectLevel = playComputerImpossible;
 	}
+};
+
+changingLevels();
+
+levelSelected.addEventListener("change", function () {
+	console.log(levelSelected.value);
+	reset();
+	changingLevels();
 });
 
 const checkStopPlay = function () {
-	if (isLeft === 0 && winner !== 0) return;
+	if (isLeft === 0 && winner !== 0) return true;
 	else if (isLeft === 0 && winner === 0) {
 		console.log("Draw");
-		return;
+		return true;
 	}
+	return false;
 };
 
 boxes.forEach((box, i) => {
 	box.addEventListener("click", () => {
 		if (isLeft === 0) return;
+		if (filled[i] !== 0) return;
 		filled[i] = 1;
 		isLeft--;
 		const pointerClass = document.querySelector(`.zero-${i + 1}`);
@@ -293,9 +369,10 @@ boxes.forEach((box, i) => {
 		console.log(filled);
 		console.log(isLeft);
 		checkWin();
-		checkStopPlay();
-		selectLevel();   // computer plays
+		if (checkStopPlay()) return;
+		selectLevel(); // computer plays
+		console.log(`after computer ${filled}`);
 		checkWin();
-		checkStopPlay();
+		if (checkStopPlay()) return;
 	});
 });

@@ -9,11 +9,22 @@
 	</head>
 	<body>
 		<main class="main-game">
-			<select name="" id="select-levels">
-				<option value="easy">Easy</option>
-				<option value="medium" selected>Medium</option>
-				<option value="impossible">Impossible</option>
-			</select>
+			<aside>
+				<select name="" id="select-levels" class="select-levels">
+					<option value="easy">Easy</option>
+					<option value="medium" selected>Medium</option>
+					<option value="impossible">Impossible</option>
+				</select>
+				<div class="result-display">
+					<h2>0 is the winner</h2>
+					<p>
+						Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem
+						nesciunt itaque dignissimos officia explicabo alias iure, enim
+						perspiciatis modi ducimus voluptatibus incidunt ipsum mollitia hic
+						distinctio suscipit molestiae aperiam perferendis.
+					</p>
+				</div>
+			</aside>
 			<div class="game-layout">
 				<div class="items item-1">
 					<ion-icon class="zero zero-1" name="radio-button-off"></ion-icon>
@@ -55,6 +66,7 @@
 				<div class="vertical-2"></div>
 				<div class="horizontal-1"></div>
 				<div class="horizontal-2"></div>
+				<div class="win-line"></div>
 			</div>
 		</main>
 		<script
