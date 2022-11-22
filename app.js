@@ -5,6 +5,8 @@ const mul = document.querySelectorAll(".mul");
 const winLine = document.querySelector(".win-line");
 const winnerName = document.querySelector('.winner-name')
 
+const restart = document.querySelector('.restart');
+
 const levelSelected = document.querySelector("#select-levels");
 
 // const allLevels = document.querySelectorAll('.levels level')
@@ -32,7 +34,9 @@ let isLeft = 9;
 let isZero = false;
 let winner = 0;
 
+
 const reset = function () {
+	document.querySelector('.result-display').classList.remove('box-shadow')
 	winnerName.textContent = "..."
 	winLine.style.opacity = "0";
 	winLine.style.visibility = "hidden";
@@ -45,6 +49,10 @@ const reset = function () {
 	filled.fill(0);
 	isLeft = 9;
 };
+
+restart.addEventListener('click', function(){
+	reset();
+})
 
 const playComputerEasy = function () {
 	for (let i = 0; i < filled.length && isLeft > 0; i++) {
@@ -254,12 +262,14 @@ const printWinner = function (val) {
 		console.log("O won");
 		isLeft = 0;
 		winnerName.textContent = "O"
+		document.querySelector('.result-display').classList.add('box-shadow')
 	} else if (val === 2) {
 		winner = 2;
 		console.log(`came here win`);
 		console.log("X won");
 		isLeft = 0;
 		winnerName.textContent = "X"
+		document.querySelector('.result-display').classList.add('box-shadow')
 	}
 };
 

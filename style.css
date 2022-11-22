@@ -149,3 +149,44 @@ aside{
   font-weight: bolder;
 }
 
+.box-shadow{
+  box-shadow: 0rem 0rem 6.8rem rgba(0, 0, 0, 0.3);
+  transition: transform .4s;
+}
+
+.box-shadow:hover{
+  transform: translateY(-4px);
+}
+
+.restart{
+  margin: 0rem auto;
+  padding: 1.4rem 2.8rem;
+  padding-right: 6rem;
+  border: none;
+  font-size: 2rem;
+  border-radius: 100px;
+  background-color: #f5cba7;
+  text-transform: uppercase;
+  position: relative;
+  border: solid 3px #e67e22;
+  color: #444;
+  box-shadow: 1.2rem 1.2rem 5rem rgba(0, 0, 0, 0.4);
+  transition: transform .4s;
+}
+
+.restart:hover{
+  transform:  translateY(-5px);
+}
+
+.restart:active{
+  transform: translateY(2px);
+}
+
+.restart-icon{
+  color: inherit;
+  width: 3rem;
+  height: 4rem;
+  position: absolute;
+  top: .8rem;
+  right: 2rem;
+}
