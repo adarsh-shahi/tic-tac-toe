@@ -6,6 +6,11 @@ const winLine = document.querySelector(".win-line");
 
 const levelSelected = document.querySelector("#select-levels");
 
+// const allLevels = document.querySelectorAll('.levels level')
+const easyLevel = document.querySelector(".level-easy");
+const mediumLevel = document.querySelector(".level-medium");
+const impossibleLevel = document.querySelector(".level-impossible");
+
 const box1 = document.querySelector(".item-1");
 const box2 = document.querySelector(".item-2");
 const box3 = document.querySelector(".item-3");
@@ -144,6 +149,7 @@ const findTwoInWinPosition = function (val) {
 };
 
 const playComputerImpossible = function () {
+	console.log(`came in impossible function`);
 	if (findTwoInWinPosition(2)) {
 		// find 2 in continue and win - computer
 		isLeft--;
@@ -274,6 +280,7 @@ const checkWin = function () {
 		winLine.style.visibility = "visible";
 		winLine.style.left = "11rem";
 		winLine.style.top = "7rem";
+		winLine.style.width = "50rem"
 
 		printWinner(filled[0]);
 	} else if (
@@ -287,6 +294,7 @@ const checkWin = function () {
 		winLine.style.visibility = "visible";
 		winLine.style.right = "11rem";
 		winLine.style.top = "7rem";
+		winLine.style.width = "50rem"
 		printWinner(filled[2]);
 	} else if (
 		filled[1] === filled[4] &&
@@ -331,23 +339,33 @@ const checkWin = function () {
 
 let selectLevel = playComputerMedium;
 
-const changingLevels = function () {
-	if (levelSelected.value === "easy") {
-		selectLevel = playComputerEasy;
-	} else if (levelSelected.value === "medium") {
-		selectLevel = playComputerMedium;
-	} else if (levelSelected.value === "impossible") {
-		selectLevel = playComputerImpossible;
-	}
+easyLevel.addEventListener("click", function () {
+	changingLevels(playComputerEasy);
+});
+mediumLevel.addEventListener("click", function () {
+	changingLevels(playComputerMedium);
+});
+impossibleLevel.addEventListener("click", function () {
+	console.log("impossible button clicked");
+	changingLevels(playComputerImpossible);
+});
+
+const changingLevels = function (level) {
+	reset();
+	selectLevel = level;
+	console.log('hehe '+selectLevel);
+	easyColor = "#f5cba7";
+	mediumColor = "#f5cba7";
+	impossibleColor = "#f5cba7";
+	if (level.name == "playComputerEasy") easyColor = "#e67e22";
+	else if (level.name == "playComputerMedium") mediumColor = "#e67e22";
+	else if (level.name == "playComputerImpossible") impossibleColor = "#e67e22";
+	easyLevel.style.backgroundColor = easyColor;
+	mediumLevel.style.backgroundColor = mediumColor;
+	impossibleLevel.style.backgroundColor = impossibleColor;
 };
 
-changingLevels();
-
-levelSelected.addEventListener("change", function () {
-	console.log(levelSelected.value);
-	reset();
-	changingLevels();
-});
+changingLevels(playComputerMedium);
 
 const checkStopPlay = function () {
 	if (isLeft === 0 && winner !== 0) return true;
