@@ -1,6 +1,6 @@
 "use-strict";
-const zero = document.querySelector(".zero");
-const mul = document.querySelector(".mul");
+const zero = document.querySelectorAll(".zero");
+const mul = document.querySelectorAll(".mul");
 
 const box1 = document.querySelector(".item-1");
 const box2 = document.querySelector(".item-2");
@@ -21,6 +21,17 @@ let filled = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 let isLeft = 9;
 let isZero = false;
 let winner = 0;
+
+const reset = function () {
+	zero.forEach((element) => {
+		element.style.display = "none";
+	});
+	mul.forEach((element) => {
+		element.style.display = "none";
+	});
+	filled.fill(0);
+	isLeft = 9;
+};
 
 const playComputerEasy = function () {
 	setTimeout(() => {
@@ -215,9 +226,11 @@ const playComputerMedium = function () {
 
 const printWinner = function (val) {
 	if (val === 1) {
+		winner = 1;
 		console.log("O won");
 		isLeft = 0;
 	} else if (val === 2) {
+		winner = 2;
 		console.log(`came here win`);
 		console.log("X won");
 		isLeft = 0;
@@ -245,6 +258,31 @@ const checkWin = function () {
 	}
 };
 
+let selectLevel = playComputerMedium;
+
+const levelSelected = document.querySelector("#select-levels");
+console.log(levelSelected.value);
+
+levelSelected.addEventListener("change", function () {
+	console.log(levelSelected.value);
+	reset();
+	if (levelSelected.value === "easy") {
+		selectLevel = playComputerEasy;
+	} else if (levelSelected.value === "medium") {
+		selectLevel = playComputerMedium;
+	} else if (levelSelected.value === "impossible") {
+		selectLevel = playComputerImpossible;
+	}
+});
+
+const checkStopPlay = function () {
+	if (isLeft === 0 && winner !== 0) return;
+	else if (isLeft === 0 && winner === 0) {
+		console.log("Draw");
+		return;
+	}
+};
+
 boxes.forEach((box, i) => {
 	box.addEventListener("click", () => {
 		if (isLeft === 0) return;
@@ -255,10 +293,9 @@ boxes.forEach((box, i) => {
 		console.log(filled);
 		console.log(isLeft);
 		checkWin();
-		if (isLeft === 0) return;
-		playComputerEasy()
-		console.log(filled);
+		checkStopPlay();
+		selectLevel();   // computer plays
 		checkWin();
-		if (isLeft === 0) return;
+		checkStopPlay();
 	});
 });
